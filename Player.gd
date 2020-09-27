@@ -44,14 +44,7 @@ func _process(delta):
 func handle_movement(delta):
 	
 	var direction = Vector3()
-	
-	if active:
-		if Input.is_action_pressed("switch"):
-			if camera.is_current():
-				camera.clear_current(true)
-		else:
-			camera2.clear_current(true)
-		
+
 		if Input.is_action_pressed("move_forward"):
 			direction -= transform.basis.z
 
