@@ -18,14 +18,6 @@ var has_double_jumped = false
 
 onready var Pivot = $Spatial
 onready var camera = $Spatial/SpringArm/Camera
-onready var camera2 = $Spatial/SpringArm/Camera2
-
-onready var slowmo = $HUD/Slowmo
-
-onready var springarm = $Spatial/SpringArm
-
-onready var active = true
-
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -71,13 +63,6 @@ func handle_movement(delta):
 
 		if Input.is_action_pressed("move_right"):
 			direction += transform.basis.x
-	
-		if Input.is_action_pressed("slow_mo"):
-			Engine.time_scale = 0.1
-			slowmo.visible = false
-		else:
-			Engine.time_scale = 1
-			slowmo.visible = false
 
 	direction = direction.normalized()
 	
@@ -104,9 +89,3 @@ func handle_movement(delta):
 	
 	velocity.y = y_velocity
 	velocity = move_and_slide(velocity,Vector3.UP)
-
-func _on_Obstacle_body_entered(body):
-	queue_free()
-
-func _on_Area_body_entered(body):
-	get_tree().change_scene("res://Scenes/World.tscn")
